@@ -1,7 +1,7 @@
-// array in local storage for registered users
+// array in local storage for registered users 
 let users = JSON.parse(localStorage.getItem('users')) || [];
     
-export function configureFakeBackend() {
+export function configureFakeBackend() { 
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         const { method, headers } = opts;
@@ -20,7 +20,9 @@ export function configureFakeBackend() {
                     case url.endsWith('/users') && method === 'GET':
                         return getUsers();
                     case url.match(/\/users\/\d+$/) && method === 'DELETE':
-                        return deleteUser();
+                    return deleteUser();
+                   case url.match(/\/users\/\d+$/) && method === 'PUT':
+                      return ToDoList();  
                     default:
                         // pass through any requests not handled above
                         return realFetch(url, opts)
@@ -28,8 +30,14 @@ export function configureFakeBackend() {
                             .catch(error => reject(error));
                 }
             }
-
-            // route functions
+ 
+           // route functions
+       function ToDoList() {
+           const lists = body;  
+       if (!isLoggedIn()) return unauthorized();
+        localStorage.setItem('lists', JSON.stringify(lists));
+        return ok();
+      } 
 
             function authenticate() {
                 const { username, password } = body;
