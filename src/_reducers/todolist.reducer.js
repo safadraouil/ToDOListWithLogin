@@ -8,13 +8,11 @@ export function todolist(state = {}, action) {
     const litemsists = action.list
     let newState = {} 
     switch (action.type) {
-        case todolistConstants.LIST_REQUEST:
-            console.log('999', action.lists)
+        case todolistConstants.LIST_REQUEST: 
       
           newState = cloneDeep({
                 ...state
-            });  
-            console.log('922222299', state)
+            });   
             //newState.lists = { ...newState.lists, ...action.lists }
             newState = { ...newState,  ...action.lists }
             return {

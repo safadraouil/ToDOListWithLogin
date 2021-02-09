@@ -39,11 +39,8 @@ const ToDoList = () => {
   const user = useSelector((state) => state.authentication.user);
   const List = useSelector(state => state.todolist); 
  
-  const listsTo = (list) => {
-    console.log('listajdida', list  );
-      for (const item in list) {
-        //console.log('OOOOPSlist[item]', list[item]);
-        //console.log('OOOOPSssssslist[item].newState', list[item].newState);
+  const listsTo = (list) => { 
+      for (const item in list) { 
         if (list[item][0] && list[item][0].id !== undefined) {
           tablelists = tablelists.reverse()///.filter((items) => items.id !== list[item][0].id);
           tablelists.push(list[item][0]) }
@@ -54,9 +51,7 @@ const ToDoList = () => {
   tablelists = tablelists.reverse().filter((item) => item.id == user.id)
   const arrayOfObj = tablelists[0] &&Object.entries(tablelists[0]).map((e) => ( { [e[0]]: e[1] } ));
   arrayOfObj ? arrayOfObj.pop() : null
-  arrayOfObj &&arrayOfObj.forEach((item ,i)=> tabList.push(item[i]))
-  console.log('+++++++++++++++++++++++++++', tabList);
-  console.log('-------------------------',tasks)
+  arrayOfObj &&arrayOfObj.forEach((item ,i)=> tabList.push(item[i])) 
   
 
    
@@ -66,17 +61,18 @@ const ToDoList = () => {
   const taskslist = [] 
 
   const addTask = (text) => {
-    const task = [...tasks, { text }];
+    const task = [...tasks, { text ,isCompleted : true} ];
+      
     setTasks(task);
     !taskslist[0] ? taskslist.push(Object.assign({} ,{id : user.id} , task)) 
       : taskslist.push(task); 
-    const listt = taskslist[0] 
+    const listt = taskslist[0]  
    dispatch(todolistActions.ToDoList(taskslist));
   };
 
   const toggleTask = (index) => {
     const newTasks = [...tasks];
-    newTasks[index].isCompleted = !newTasks[index].isCompleted;
+    newTasks[index].isCompleted = !newTasks[index].isCompleted; 
     setTasks(newTasks);
     
   };
@@ -90,14 +86,12 @@ const ToDoList = () => {
 
     const listt = taskslist[0]  
     dispatch(todolistActions.ToDoList(listt));
-  };
-
- // console.log('finalyyyyyyy11111', arrayOfObj && arrayOfObj)
-  //console.log('finalyyyyyyy0000',tasks)  
+  };  
   return (
  
-    <div className="todo-list">
+    <div >
 
+<div className="todo-list">
 
       {
         
@@ -106,7 +100,7 @@ const ToDoList = () => {
           <span
             onClick={() => toggleTask(index)}
             className={
-              task.isCompleted ? 'todo-text todo-completed' : 'todo-text'
+              task.isCompleted ? 'todo-completed' : 'todo-text'
             }
           >
             {task.text}
@@ -117,7 +111,7 @@ const ToDoList = () => {
         </div>
       ))  }
       <AddTaskForm addTask={addTask} id={user.id} />
-    </div>
+    </div></div>
   );
 };
 export { ToDoList }; 

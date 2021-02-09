@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToDoList  }from '../ToDoList/ToDoList';
 
+
 import { userActions } from '../_actions';
 
 function HomePage() {
@@ -24,7 +25,10 @@ function HomePage() {
  
 
     return (
-        <div>
+        <div className="body">
+     
+            
+            <span>
             <div> 
              <h1>Hi {user.firstName}!</h1>
             <p>You're logged in with React Hooks!!</p>
@@ -45,14 +49,10 @@ function HomePage() {
                     )}
                 </ul>
             }
-            <p>
-         
-       
-                <Link to="/login">Logout</Link>
-                </p>
-                </div>
-
-              <ToDoList user={user} ></ToDoList> 
+            <p>   <Link to="/login">Logout</Link>  </p>
+            </div>
+                <div>  <ToDoList user={user} ></ToDoList>   </div>
+                </span>
         </div>
     );
 }

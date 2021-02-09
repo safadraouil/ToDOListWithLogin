@@ -1,7 +1,7 @@
 {
     "name": "ToDoList",
     "version": "1.0.0",
-    " homepage":  "https://github.com/safadraouil/ToDOListWithLogin.git ",
+    " homepage": "https://github.com/safadraouil/ToDOListWithLogin.git ",
     "scripts": {
         "build": "webpack --mode production",
         "start": "webpack-dev-server --open",
@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@material-ui/core": "^4.11.3",
+        "bootswatch": "^4.6.0",
         "history": "^4.10.1",
         "react": "^16.13.0",
         "react-bootstrap": "^1.4.3",
